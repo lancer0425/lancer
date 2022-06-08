@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="./css/index.css"/>
+	    <script src="./js/index.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="catbox">
+			<table border="1" cellspacing="0" cellpadding="0" id="cartTable">
+				<thead>
+					<tr>
+						<th><label><input type="checkbox" class="check-all check"/>&nbsp;全选/反选</label></th>
+					    <th>商品</th>
+						<th>单价</th>
+						<th>数量</th>
+						<th>小计</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+				    <tr>
+						<td><label><input type="checkbox" class="check-one check"/></label></td>
+						<td class="goods"><span>短袖</span></td>
+						<td class="price"><span>50</span></td>
+						<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="1" /><span class="add">+</span></td>
+						<td class="subtotal">50</td>
+						<td class="operation"><span class="delete">删除</span></td>
+					</tr>
+				    <tr>
+				    	<td><label><input type="checkbox" class="check-one check"/></label></td>
+				    	<td class="goods"><span>裤子</span></td>
+				    	<td class="price"><span>70</span></td>
+				    	<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="1" /><span class="add">+</span></td>
+				    	<td class="subtotal">70</td>
+				    	<td class="operation"><span class="delete">删除</span></td>
+				    </tr>
+					<tr>
+						<td><label><input type="checkbox" class="check-one check"/></label></td>
+						<td class="goods"><span>鞋子</span></td>
+						<td class="price"><span>150</span></td>
+						<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="1" /><span class="add">+</span></td>
+						<td class="subtotal">150</td>
+						<td class="operation"><span class="delete">删除</span></td>
+					</tr>
+					<tr>
+						<td><label><input type="checkbox" class="check-one check"/></label></td>
+						<td class="goods"><span>手表</span></td>
+						<td class="price"><span>850</span></td>
+						<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="1" /><span class="add">+</span></td>
+						<td class="subtotal" id="subtotal">850</td>
+						<td class="operation"><span class="delete">删除</span></td>
+					</tr>
+			   </tbody>
+			</table>
+			<div class="foot" id="foot">
+				<div class="total">合计：￥<span id="priceTotal">0.00</span></div>
+		         <div class="fr selected" id="selected">已选商品<span id="selectedTotal">0</span>件</div>
+			</div>
+		</div>
+	</body>
+</html>
