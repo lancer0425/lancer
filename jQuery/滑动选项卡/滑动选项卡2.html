@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            width: 900px;
+            height: 40px;
+            margin: 50px auto;
+            /* overflow: hidden; */
+            border-bottom: 3px solid #333;
+            position: relative;
+        }
+       
+       
+        ul,li{
+            list-style: none;
+        }
+        li{
+            float: left;
+            width: 100px;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+        }
+        ul > span{
+            width: 100px;
+            height: 40px;
+            background-color: skyblue;
+            border-bottom: 3px solid red;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            /* 不作为事件目标 */
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>选项菜单1</li>
+        <li>选项菜单2</li>
+        <li>选项菜单3</li>
+        <li>选项菜单4</li>
+        <li>选项菜单5</li>
+        <li>选项菜单6</li>
+        <li>选项菜单7</li>
+        <li>选项菜单8</li>
+        <li>选项菜单9</li>
+        <span>选项菜单1</span>
+    </ul>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $('li').mousemove(function(){
+            const index=$(this).index()
+            $('span').stop().animate({
+                left:index*100
+            },100).text($(this).text())
+        })
+        $('li').click(function(){
+            // console.log(this)
+        })
+        $("ul").on('click','li',function(){
+            console.log(this)
+  
+        })
+    </script>
+</body>
+</html>

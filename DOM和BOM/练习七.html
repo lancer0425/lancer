@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{height: 100px;margin: auto;background-color: #A7CBFF;}
+			.btn{margin: 0 auto;display: block;}
+		</style>
+	</head>
+	<body>
+		<button type="button"id="btn" class="btn">隐身</button>
+		<div id="box" style="width: 100px;"></div>
+	</body>
+	<script type="text/javascript">
+		var btn=document.getElementById("btn")
+		var box=document.getElementById("box")
+		var i=0;
+		btn.onclick=function(){
+			if(i==0){
+				box.style.display="none";
+				i=1;
+			}else{
+			    box.style.display="block";
+				i=0;
+				}
+				}
+	</script>
+</html>

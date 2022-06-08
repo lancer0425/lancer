@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        div{width: 500px;height: 50px;background-color: aqua;overflow: hidden;position: relative;margin: 100px auto;}/*div背景框*/
+        div ul li{list-style: none;display: block;float: left;width: 100px;height: 40px;border-bottom: 10px solid yellow;}/*去点,块,左浮动*/
+        div ul span{width: 100px;height: 40px;background-color: chartreuse;border-bottom: 10px solid red;position: absolute;pointer-events: none;}
+    </style>
+</head>
+<body>
+    <div>
+        <ul>
+            <li>无极剑圣</li>
+            <li>无双剑姬</li>
+            <li>疾风剑豪</li>
+            <li>暗裔剑魔</li>
+            <li>封魔剑魂</li>
+            <span></span>
+        </ul>
+    </div>
+    <script>
+        /*鼠标移动到li标签上发生事件*/
+        $("li").mousemove(function(){
+            /*index是当前鼠标在哪个li标签的下标*/
+            const index=$(this).index()
+            /*span标签停止到哪里，*/
+            $('span').stop().animate({
+                /*左移100像素*/
+                left:index*100
+                /*100是1秒，*/
+            },100).text($(this).text())
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{width: 300px;height: 120px;border: #000000 solid 1px;}
+		</style>
+	</head>
+	<body>
+	<div id="nn">潘玉林是个憨批</div>
+	<button type="button" id="btn">点击呼唤</button>
+	<div id="mm">潘玉林是个大憨憨</div>
+	</body>
+	<script type="text/javascript">
+		var btn=document.getElementById("btn")
+		var a=document.getElementById("nn").innerHTML;
+		var b=document.getElementById("mm").innerHTML;
+		var i=0;
+		// console.log(btn);
+		btn.onclick=function(){
+				if(i==0){
+			document.getElementById("mm").innerHTML=a;
+			document.getElementById("nn").innerHTML=b;
+			i=1
+		}else if(i==1){
+			document.getElementById("nn").innerHTML=a;
+			document.getElementById("mm").innerHTML=b;
+			i=0;
+		}
+		}
+	</script>
+</html>

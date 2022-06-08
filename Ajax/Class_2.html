@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">点击获取用户信息</button>
+    <div id="box" style="width:500px; height: 500px; border: solid 1px black;text-align: center;margin: 100px auto;"></div>
+
+    <script>
+        var btn=document.getElementById("btn");
+        var box=document.getElementById("box");
+        btn.onclick=function(){
+            // 1.创建ajax的应用对象 
+            var xhr=new XMLHttpRequest();
+            // 2.调用open方法 open（请求方式，url，是否异步）
+            xhr.open("GET","./index.json",true);
+            //3.发送请求send()
+            xhr.send();
+            //4.监听服务器状态
+            xhr.onreadystatechange=function(){
+                // 0 未初始化，但是有shr实例
+                // 1 调用了open()
+                // 2 发送了send()但服务器无回应
+                // 3 正在接受服务器返回的数据
+                // 4 完成响应
+                if(xhr.readyState==4){
+
+                    if(xhr.status>=200&&xhr.status<300){
+                        box.innerHTML=xhr.response;
+                    }else{
+                    alert("异步刷新失败")
+
+                }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

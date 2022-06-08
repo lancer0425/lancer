@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			div{width: 100px; height: 100px;border: #000000 solid 1px;background-color: #A7CBFF;margin:auto;}1
+			.btn{margin: 0 auto;display: block;}
+		</style>
+	</head>
+	<body>
+		<div id="box" <!-- style="width: 100px; -->"></div>
+		<button type="button"id="btn" class="btn">放大</button>
+	</body>
+	<script type="text/javascript">
+		var btn=document.getElementById("btn");
+		var box=document.getElementById("box");
+		btn.onclick=function(){
+			 var a=parseInt(box.style.width);
+			 box.style.width=a+20+"px";
+		}
+	</script>
+</html>

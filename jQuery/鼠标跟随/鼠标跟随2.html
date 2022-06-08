@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+          
+            #box2{
+                
+                height: 200px;
+                background-color: yellow;
+            }
+        </style>
+        <script src="/jquery-3.6.0.js"></script>
+        <script>
+
+            
+            $(()=>{
+                $("#box1").on("mouseover","img",function(){
+                    $("#box2").css({
+                        "display":"block"
+                        
+                    })
+
+                    $("#box1").on("mouseout","img",function(){
+                        $("#box2").css({
+                        "display":"none"
+                    })
+                    })
+                    $("#box1").on("mousemove","img",function(ev){
+                        let e=ev||window.event;
+                        let target=e.target;
+                        let img=Array.from($("img"));
+                        $("#box2").css({
+                            "left":e.clientX+5+"px",
+                            "top":e.clientY+5+"px"
+                        })
+
+                        $("#box2").html(`
+                        <img src="./img/${img.indexOf(target)+1}.jpg" alt="">
+                        `)
+                    })
+
+
+                })
+
+            })
+        </script>
+    </head>
+    <body>
+        <div id="box1">
+            <img src="./img/1.jpg" alt="">
+            <img src="./img/2.jpg" alt="">
+            <img src="./img/3.jpg" alt="">
+        </div>
+        <div id="box2" style="display: none;position: absolute;">
+            
+        </div>
+    </body>
+</html>

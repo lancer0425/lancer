@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴特效</title>
+    <script src="/jquery-3.6.0.js"></script>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        img{width: 560px; height: 330px;}
+        .accordion{width: 900px;height: 330px;border: 1px solid black;margin: 100px auto;position: relative;;overflow: hidden;}
+        .accordion ul{list-style: none;}
+        .accordion ul li{position: absolute;}
+        .no0{left: 0;}
+        .no1{left: 180px;}
+        .no2{left: 360px;}
+        .no3{left: 540px;}
+        .no4{left: 720px;}
+        /* 遮罩层 */
+        /* .mask{
+            position: absolute;
+            width: 560px;
+            height: 330px;
+            background-color: black;
+            top: 0;
+            left: 0;
+            opacity: 0.6;
+        } */
+    </style>
+    <script>
+        $(function(){
+            //设置速度
+            var speed = 300;
+
+            $(".accordion ul li").mouseover(function(){
+                var idx = $(this).index();   //当前序号
+
+                //左侧，则左走85*idx px
+                $(".accordion ul li:lt("+(idx+1)+")").each(function(i){
+                    $(this).stop(true).animate({
+                        "left": 85 * i
+                    },speed);
+                });
+                //右侧，向左走 560 + 85*idx px
+                $(".accordion ul li:gt("+idx+")").each(function(i){
+                    $(this).stop(true).animate({
+                        "left": 560 + 85 * (idx+i)
+                    },speed);
+                });
+                //碰到的元素变量，其余变暗
+                // $(this).children(".mask").stop(true).fadeOut();
+                // $(this).siblings().children(".mask").stop(true).fadeIn();
+                //鼠标离开时，归位
+                $(".accordion").mouseleave(function(){
+                    $(".accordion ul li").each(function(i){
+                        $(this).animate({
+                            "left":180 * i
+                        },speed);
+                        $(".mask").fadeIn();
+                    });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+     <div id="accordion" class="accordion">
+        <ul>
+            <li class="no0">
+                <div class="mask"></div>
+                <a href=""><img src="./img/1.jpg" alt=""></a>
+            </li>
+            <li class="no1">
+                <div class="mask"></div>
+                <a href=""><img src="./img/2.jpg" alt=""></a>
+            </li>
+            <li class="no2">
+                <div class="mask"></div>
+                <a href=""><img src="./img/3.jpg" alt=""></a>
+            </li>
+            <li class="no3">
+                <div class="mask"></div>
+                <a href=""><img src="./img/4.jpg" alt=""></a>
+            </li>
+            <li class="no4">
+                <div class="mask"></div>
+                <a href=""><img src="./img/5.jpg" alt=""></a>
+            </li>
+        </ul>
+
+     </div>
+</body>
+</html>

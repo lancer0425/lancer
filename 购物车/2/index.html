@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0 auto;padding: 0;line-height: none;}
+			.a{background-color: aqua;}/*标题背景*/
+			.b{width: 23%;height: 30px;background-color: aqua;}/*结算项背景*/
+		</style>
+	</head>
+	<body>
+		<div class="c">
+			<table border="1" cellspacing="0" cellpadding="5">
+				<tr class="a">
+					<th><input type="checkbox" class="check-all check">全选/反选</th>
+					<th>商品</th>
+					<th>单价</th>
+					<th>数量</th>
+					<th>小计</th>
+					<th>操作</th>
+				</tr>
+				<tbody id="tbody">
+				<tr>
+					<td><input type="checkbox" class="check-one check"></td>
+					<td class="goods">短袖</td>
+					<td class="price">50</td>  
+					<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="0"><span class="add">+</span></td>
+					<td class="subtotal">50</td>
+					<td class="operation"><span class="delete">删除</span></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" class="check-one check"></td>
+					<td class="goods">裤子</td>
+					<td class="price">70</td>
+					<td class="count"><span class="reduce"n>-</span><input type="text" class="count-input" value="0"><span class="add">+</span></td>
+					<td class="subtotal">70</td>
+					<td class="operation"><span class="delete">删除</span></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" class="check-one check"></td>
+					<td class="goods">鞋子</td>
+					<td class="price">150</td>
+					<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="0"><span class="add">+</span></td>
+					<td class="subtotal">150</td>
+					<td class="operation"><span class="delete">删除</span></td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" class="check-one check"></td>
+					<td class="goods">手表</td>
+					<td class="price">850</td>
+					<td class="count"><span class="reduce">-</span><input type="text" class="count-input" value="0"><span class="add">+</span></td>
+					<td class="subtotal">850</td>
+					<td class="operation"><span class="delete">删除</span></td>
+				</tr>
+			</tbody>
+			</table>
+			<div class="b">
+				<a >已选商品<span id="selectedTotal">0</span>件</a>
+				<a >合计：￥<span id="priceTotal">0.00</span></a>
+			</div>
+		</div>
+	</body>
+	<script>
+		// 选择框有全选和反选的功能
+		// 选中之后会有将选中的小计放到合计中
+		window.onload=function(){
+			var check=getClass("check");
+			// 所有的复选框
+			console.log(check);
+			// 总计
+			var priceTotal=document.getElementById("priceTotal");
+			// 数量
+			var selectedTotal=document.getElementById("selectedTotal"); 
+			var tbody=document.getElementById("tbody");
+			var tr=tbody.getElementsByTagName("tr");
+
+			// input   checked选中的状态true/false
+			//点击全选后下面的所有复选框全选
+			for(var i=0;i<check.length;i++){
+				check[i].onclick=function(){
+					if(this.className=="check-all check"){
+						for(var j=0;j<check.length;j++){
+							check[j].checked=this.checked;
+						}
+				}
+			}
+			getTotal();
+		}
+		
+		// 事件委托添加点击事件
+		for(var i=0;i<tr.length;i++){
+		tr[i].onclick=function(event){
+			var e=window.event;
+			var obj=e.srcElement||e.target;
+			var input_1=this.getElementsByTagName("input")[1];
+			switch(obj.className){
+				case 'add':
+					input_1.value=parseInt(input_1.value)+1;
+					break;
+				case 'reduce':
+					if(input_1.value<=1){
+						input_1.value=1;
+					}else{
+						input_1.value-=1;
+					}
+					break;
+				case 'delete':
+					 tbody .removeChild(obj.parentNode.parentNode);
+					 break;
+			}
+			getTotal();
+		}
+
+		}
+
+		// 计算合计的方法
+		function getTotal(){
+			var tr=document.getElementById("tbody").getElementsByTagName("tr")/*获取行*/
+			var price=0;/*总价*/
+			var selected=0;/*数量*/
+			for(var i=0;i<tr.length;i++){
+				var input=tr[i].getElementsByTagName("input");
+				if(input[0].checked){
+					// 获取单价
+					var td2=tr[i].getElementsByTagName("td")[2].innerText;
+					// 获取小计
+					var td4=tr[i].getElementsByTagName('td')[4];
+					// 获取数量
+					var num=parseInt(input[1].value);
+					td4.innerText=td2*num;
+					// 计算总价
+					price+=parseInt(tr[i].getElementsByTagName("td")[4].innerText);
+					selected+=num;
+				}
+			}
+			priceTotal.innerHTML=price;
+			selectedTotal.innerHTML=selected;
+
+		}
+
+		//获取类名的节点(第一步)
+		function getClass(cName){
+			// 获取所有节点
+		var doms=document.getElementsByTagName("*");
+		// console.log(doms);
+		var domArr=[];/*所有节点的数组*/   
+		for(var i=0;i<doms.length;i++){
+			if(doms[i].className==cName||doms[i].className.indexOf(" "+cName)!=-1||doms[i].className.indexOf(cName+" ")!=-1){       /*className   cName  类名*/
+				// console.log(doms[i]);
+				domArr.push(doms[i]);
+			}
+		}
+		return domArr;
+	}
+}
+	</script>
+</html>
